@@ -32,6 +32,7 @@ function SearchBar() {
       setIsLoading(false);
     } catch (error) {
       setIsError(true);
+      setIsLoading(false);
     }
   };
   useEffect(() => {
@@ -57,9 +58,9 @@ function SearchBar() {
         ) : (
           <TripPost tripPost={tripPost} setSearchPost={setSearchPostFormTag} />
         )}
-        {/* {console.log(tripPost)} */}
-        {/* {tripPost[0] ? console.log("yes") : console.log("no") */}
-        {tripPost[0] ? null : <>{`Not found "${searchPost}"`}</>}
+        {!isLoading & !isError & !tripPost[0] ? (
+          <>{`Not found "${searchPost}"`}</>
+        ) : null}
       </div>
     </div>
   );
